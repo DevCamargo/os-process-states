@@ -15,6 +15,8 @@ export default {
 </script>
 
 <style lang="scss">
+// https://materialdesignicons.com/
+// https://dev.materialdesignicons.com/getting-started/webfont
 @font-face {
   font-family: 'Win95';
   src: url('./assets/Win95.ttf') format('truetype');
