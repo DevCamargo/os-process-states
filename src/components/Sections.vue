@@ -8,8 +8,10 @@
         :to="`/${section}`"
         active-class="active"
         class="section"
-        >{{ section }}</router-link
       >
+        <span>{{ section }}</span>
+        <div class="line"></div>
+      </router-link>
     </div>
     <div class="outset">
       <div class="inset">
@@ -20,18 +22,12 @@
 </template>
 
 <script>
-import Window from '@components/Window'
-
 export default {
   name: 'Sections',
   data() {
     return {
       sections: ['applications', 'process', 'application', 'proces']
     }
-  },
-  components: {
-    Window
-    // Button
   }
 }
 </script>
@@ -41,21 +37,41 @@ export default {
   position: relative;
   .buttons {
     z-index: 2;
-    height: 25px;
+    height: 30px;
     width: fit-content;
     position: absolute;
     .section {
+      position: relative;
+      z-index: 1;
+      font-size: 16px;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
       height: 25px;
-      border-bottom: 2px solid $border-light;
+      padding: 0px;
+      border: 2px outset;
+      border-bottom: 2px solid #eeeeee;
       background-color: $window;
       &.active {
         height: 25px;
+        border-bottom-style: hidden;
         border-right: 2px solid black;
-        border-bottom: 2px solid #c0c0c0;
-        //border-bottom: none;//1px solid ;
-        // background-color: blue;
+        padding-bottom: 2px;
+        span {
+          border-bottom: 0px solid #eeeeee;
+        }
+        .line {
+          position: absolute;
+          border-bottom: 2px solid $window;
+          width: 100%;
+        }
+      }
+      span {
+        padding: 0px 8px;
+      }
+      .line {
+        position: absolute;
+        border-bottom: 2px solid #eeeeee;
+        width: calc(100% + 2px);
       }
     }
   }
@@ -71,10 +87,12 @@ export default {
     position: absolute;
     top: 0;
     div {
-      border-right: 2px solid $border-shadow;
-      border-bottom: 2px solid $border-shadow;
-      border-top: 2px solid $border-light;
-      border-left: 2px solid $border-light;
+      height: 570px;
+      border: 2px outset;
+      // border-right: 2px solid $border-shadow;
+      // border-bottom: 2px solid $border-shadow;
+      // border-top: 2px solid $border-light;
+      // border-left: 2px solid $border-light;
     }
   }
 }

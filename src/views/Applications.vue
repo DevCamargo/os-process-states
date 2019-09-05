@@ -1,7 +1,18 @@
 <template>
-  <div>aaa</div>
+  <div class="applications">
+    <Inset>aaa</Inset>
+  </div>
 </template>
 <script>
-export default {}
+import Inset from '@components/Inset'
+export default {
+  components: {
+    Inset
+  }
+}
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.applications {
+  padding: 20px;
+}
+</style>
