@@ -26,7 +26,15 @@ export default {
   font-family: 'Win95', sans-serif;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #app {
+  width: 600px;
+  height: 700px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;

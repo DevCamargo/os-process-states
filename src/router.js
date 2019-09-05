@@ -4,7 +4,6 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
@@ -13,12 +12,12 @@ export default new Router({
     {
       path: '/applications',
       name: 'applications',
-      component: () => import('./views/Applications.vue')
+      component: () => import('@views/Applications.vue')
     },
     {
       path: '/process',
       name: 'process',
-      component: () => import('./views/Process.vue')
+      component: () => import('@views/Process.vue')
     }
     // {
     //   path: "/about",

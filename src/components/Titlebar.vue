@@ -24,7 +24,8 @@ export default {
   name: 'Titlebar',
   components: {
     Button
-  }
+  },
+  methods: {}
 }
 </script>
 <style lang="scss" scoped>

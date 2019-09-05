@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .task-manager {
   padding: 3px;
-  // height: 95vh;
+  height: 100%;
   .sections {
     padding: 5px 10px;
   }

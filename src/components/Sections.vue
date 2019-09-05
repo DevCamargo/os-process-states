@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="sections">
+  <div class="sections">
+    <div class="buttons">
       <router-link
         tag="button"
         v-for="(section, index) in sections"
@@ -11,9 +11,11 @@
         >{{ section }}</router-link
       >
     </div>
-    <Window class="content">
-      <slot />
-    </Window>
+    <div class="outset">
+      <div class="inset">
+        <slot />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,7 +26,7 @@ export default {
   name: 'Sections',
   data() {
     return {
-      sections: ['applications', 'process']
+      sections: ['applications', 'process', 'application', 'proces']
     }
   },
   components: {
@@ -36,13 +38,44 @@ export default {
 
 <style lang="scss" scoped>
 .sections {
-  .section {
-    &.active {
-      // background-color: blue;
+  position: relative;
+  .buttons {
+    z-index: 2;
+    height: 25px;
+    width: fit-content;
+    position: absolute;
+    .section {
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      height: 25px;
+      border-bottom: 2px solid $border-light;
+      background-color: $window;
+      &.active {
+        height: 25px;
+        border-right: 2px solid black;
+        border-bottom: 2px solid #c0c0c0;
+        //border-bottom: none;//1px solid ;
+        // background-color: blue;
+      }
     }
   }
 }
-.content {
-  // height: -webkit-fill-available;
+.outset {
+  margin-top: 23px;
+  position: relative;
+  height: 450px;
+  width: 100%;
+  .inset {
+    width: calc(100% - 4px);
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    div {
+      border-right: 2px solid $border-shadow;
+      border-bottom: 2px solid $border-shadow;
+      border-top: 2px solid $border-light;
+      border-left: 2px solid $border-light;
+    }
+  }
 }
 </style>
