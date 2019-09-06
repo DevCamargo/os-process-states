@@ -26,7 +26,7 @@ export default {
   name: 'Sections',
   data() {
     return {
-      sections: ['applications', 'process']
+      sections: ['applications', 'processes']
     }
   }
 }

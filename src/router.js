@@ -15,9 +15,9 @@ export default new Router({
       component: () => import('@views/Applications.vue')
     },
     {
-      path: '/process',
-      name: 'process',
-      component: () => import('@views/Process.vue')
+      path: '/processes',
+      name: 'processes',
+      component: () => import('@views/Processes.vue')
     }
     // {
     //   path: "/about",

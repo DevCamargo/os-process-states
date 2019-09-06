@@ -44,7 +44,7 @@ export default {
         {
           id: 1,
           name: 'Microsoft Word',
-          status: 'AAAA'
+          status: 'Running'
         }
       ]
     }
