@@ -11,7 +11,7 @@
       <Button>
         <i class="mdi mdi-window-restore" />
       </Button>
-      <Button>
+      <Button @click.native="$emit('close')">
         <i class="mdi mdi-window-close" />
       </Button>
     </div>

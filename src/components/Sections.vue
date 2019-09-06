@@ -1,6 +1,6 @@
 <template>
   <div class="sections">
-    <div class="buttons">
+    <div class="buttonTabs">
       <router-link
         tag="button"
         v-for="(section, index) in sections"
@@ -26,7 +26,7 @@ export default {
   name: 'Sections',
   data() {
     return {
-      sections: ['applications', 'process', 'application', 'proces']
+      sections: ['applications', 'process']
     }
   }
 }
@@ -35,12 +35,13 @@ export default {
 <style lang="scss" scoped>
 .sections {
   position: relative;
-  .buttons {
-    z-index: 2;
+  .buttonTabs {
+    z-index: 1;
     height: 30px;
     width: fit-content;
     position: absolute;
     .section {
+      text-transform: capitalize;
       position: relative;
       z-index: 1;
       font-size: 16px;
@@ -82,17 +83,13 @@ export default {
   height: 450px;
   width: 100%;
   .inset {
+    z-index: 0;
     width: calc(100% - 4px);
-    z-index: 1;
     position: absolute;
     top: 0;
     div {
-      height: 570px;
+      height: 560px;
       border: 2px outset;
-      // border-right: 2px solid $border-shadow;
-      // border-bottom: 2px solid $border-shadow;
-      // border-top: 2px solid $border-light;
-      // border-left: 2px solid $border-light;
     }
   }
 }

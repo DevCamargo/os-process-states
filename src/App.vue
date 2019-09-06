@@ -33,12 +33,13 @@ body {
 }
 
 #app {
+  padding-bottom: 10px;
   width: 600px;
   height: 700px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
-  color: #2c3e50;
+  color: black;
   background-color: $window;
 }
 </style>
