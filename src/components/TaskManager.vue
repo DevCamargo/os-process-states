@@ -1,33 +1,26 @@
 <template>
   <Window class="task-manager">
-    <Modal ref="newTask" class="modal">
-      <span slot="header">New Task</span>
-      <div slot="body">
-        <Input label="Task name" />
-      </div>
-      <div slot="footer">
-        <Button @click.native="$refs.newTask.close()" class="button"
-          >Cancel</Button
-        >
-        <Button class="button">Ok</Button>
-      </div>
-    </Modal>
+    <ModalNewTask @addTask="addTask" ref="modalNewTask" />
     <Titlebar>Task Manager</Titlebar>
     <Sections class="sections">
-      <router-view :tasks="tasks" @newTask="$refs.newTask.open()" />
+      <router-view
+        :tasks="tasks"
+        @newTask="$refs.modalNewTask.open()"
+        @editTask="editTask"
+        @endTask="endTask"
+        @endProcess="endProcess"
+      />
     </Sections>
     <Footer class="footer" :tasks="tasks.length" :time="time" />
   </Window>
 </template>
 
 <script>
-import Modal from '@components/Modal'
 import Titlebar from '@components/Titlebar'
 import Window from '@components/Window'
 import Sections from '@components/Sections'
 import Footer from '@components/Footer'
-import Input from '@components/Input'
-import Button from '@components/Button'
+import ModalNewTask from '@components/ModalNewTask'
 
 export default {
   name: 'TaskManager',
@@ -35,39 +28,91 @@ export default {
     return {
       running: true,
       time: 0,
-      tasks: [
-        {
-          id: 0,
-          name: 'Paint',
-          status: 'Running'
-        },
-        {
-          id: 1,
-          name: 'Microsoft Word',
-          status: 'Running'
-        }
-      ]
+      tasks: [],
+      count: 0,
+      oldTask: null
     }
   },
   components: {
-    Modal,
+    ModalNewTask,
     Titlebar,
     Window,
     Sections,
-    Footer,
-    Input,
-    Button
+    Footer
   },
   methods: {
+    randomNumber() {
+      let randomNumber = Math.floor(Math.random() * this.tasks.length)
+      if (this.tasks.length == 1) {
+        return randomNumber
+      } else if (this.oldTask == randomNumber) {
+        return this.randomNumber()
+      } else {
+        this.oldTask = randomNumber
+        return randomNumber
+      }
+    },
+    changeStatus() {
+      let task = this.tasks[this.randomNumber()]
+      this.tasks.forEach(t => {
+        if (t.id == task.id) {
+          t.status = 'Running'
+          t.processes.forEach(process => {
+            process.status = 'Running'
+          })
+        } else {
+          t.status = 'Ready'
+          t.processes.forEach(process => {
+            process.status = 'Ready'
+          })
+        }
+      })
+    },
     timer() {
       setTimeout(() => {
         if (this.running) {
+          // if (Math.floor(Math.random() * 10) == 5) {
+          //   this.running = false
+          // }
+          if (this.count == 3) {
+            if (this.tasks.length > 0) {
+              this.changeStatus()
+            }
+            this.count = 0
+          }
           this.time++
+          this.count++
           this.timer()
+        } else {
+          alert('Exeption!')
+          this.running = true
+          setTimeout(() => {
+            this.timer()
+          }, 3000)
         }
       }, 1000)
     },
-    newTask() {}
+    addTask(value) {
+      this.tasks.push(value)
+      this.changeStatus()
+      this.count = 0
+    },
+    editTask() {},
+    endTask(value) {
+      this.tasks = this.tasks.filter(t => t.id != value)
+      this.changeStatus()
+      this.count = 0
+    },
+    endProcess(process) {
+      if (process.pid != '') {
+        this.tasks[process.task].processes = this.tasks[
+          process.task
+        ].processes.filter(p => p.pid != process.pid)
+        if (this.tasks[process.task].processes.length == 0) {
+          this.endTask(process.taskId)
+        }
+      }
+    }
   },
   created() {
     this.timer()
@@ -88,18 +133,6 @@ export default {
     bottom: 0;
     padding: 5px 0px;
     width: calc(100% - 6px);
-  }
-  .modal {
-    .button {
-      padding: 2px 18px 0px;
-      height: 25px;
-      &:first-child {
-        margin-right: 5px;
-      }
-      &:last-child {
-        margin-left: 5px;
-      }
-    }
   }
 }
 </style>

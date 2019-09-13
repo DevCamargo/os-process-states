@@ -2,7 +2,6 @@
   <div
     tabindex="0"
     @focus="$emit('selected', task)"
-    @focusout="$emit('selected', null)"
     :class="isSelected ? 'tasks selected' : 'tasks'"
   >
     <slot />
@@ -12,7 +11,7 @@
 export default {
   name: 'Task',
   props: {
-    task: Number,
+    task: [Number, Object],
     isSelected: {
       type: Boolean,
       default: false

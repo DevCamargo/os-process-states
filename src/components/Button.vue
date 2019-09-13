@@ -1,8 +1,19 @@
 <template>
-  <button>
+  <button :disabled="disabled">
     <slot />
   </button>
 </template>
+<script>
+export default {
+  name: 'Button',
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 button {
   background-color: $window;

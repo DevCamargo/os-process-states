@@ -1,15 +1,29 @@
 <template>
   <div>
     <div v-if="label != ''">{{ label }}</div>
-    <input type="text" @change="value => $emit('input', value)" />
+    <input type="text" v-model="theValue" />
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      theValue: ''
+    }
+  },
   props: {
     label: {
       type: String,
       default: ''
+    },
+    value: {
+      type: String,
+      default: ''
+    }
+  },
+  watch: {
+    theValue() {
+      this.$emit('input', this.theValue)
     }
   }
 }

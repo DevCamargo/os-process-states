@@ -19,9 +19,9 @@
       </List>
     </Inset>
     <div class="options">
-      <Button @click.native="addTask">End Task</Button>
-      <Button @click.native="addTask">Edit Task</Button>
-      <Button @click.native="addTask">New Task..</Button>
+      <Button @click.native="$emit('endTask', selectedTask)">End Task</Button>
+      <Button @click.native="$emit('editTask', selectedTask)">Edit Task</Button>
+      <Button @click.native="$emit('newTask')">New Task..</Button>
     </div>
   </div>
 </template>
@@ -49,9 +49,7 @@ export default {
     }
   },
   methods: {
-    addTask() {
-      this.$emit('newTask')
-    }
+    newTask() {}
   }
 }
 </script>
