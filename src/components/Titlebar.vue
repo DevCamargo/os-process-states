@@ -4,7 +4,7 @@
       <i class="mdi mdi-desktop-classic" />
       <slot />
     </div>
-    <div class="buttons">
+    <div class="buttons" v-if="!hiddenButtons">
       <Button>
         <i class="mdi mdi-window-minimize" />
       </Button>
@@ -25,12 +25,17 @@ export default {
   components: {
     Button
   },
-  methods: {}
+  props: {
+    hiddenButtons: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
 .titlebar {
-  background-color: #010081;
+  background-color: $titlebar;
   height: 30px;
   display: flex;
   align-items: center;
