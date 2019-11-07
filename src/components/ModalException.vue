@@ -4,7 +4,7 @@
     <div slot="body">
       <div class="message">
         <i class="icon mdi mdi-close-circle" />
-        Exception in task {{task.name}}
+        Exception in task {{ task.name }}
       </div>
     </div>
   </Modal>

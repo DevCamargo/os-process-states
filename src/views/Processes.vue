@@ -5,6 +5,7 @@
         <div class="task">Task</div>
         <div class="pid">PID</div>
         <div class="status">Status</div>
+        <div class="time">Time</div>
       </Tabs>
       <List>
         <template v-for="(task, i) in tasks">
@@ -18,6 +19,7 @@
             <div class="task">{{ process.name }}</div>
             <div class="pid">{{ process.pid }}</div>
             <div class="status">{{ process.status }}</div>
+            <div class="time">{{ process.time }}</div>
           </Task>
         </template>
       </List>
@@ -67,7 +69,7 @@ export default {
 .processes {
   padding: 20px;
   .task {
-    width: 50%;
+    width: 30%;
     padding-left: 5px;
   }
   .pid {
@@ -76,6 +78,10 @@ export default {
   }
   .status {
     width: 30%;
+    padding-left: 5px;
+  }
+  .time {
+    width: 20%;
     padding-left: 5px;
   }
   .options {

@@ -4,7 +4,11 @@
       <div class="modal-mask" v-if="show">
         <div class="modal-wrapper">
           <Window class="modal-container">
-            <Titlebar :hiddenButtons="hiddenButtons" class="modal-header" @close="close">
+            <Titlebar
+              :hiddenButtons="hiddenButtons"
+              class="modal-header"
+              @close="close"
+            >
               <slot name="header"></slot>
             </Titlebar>
 

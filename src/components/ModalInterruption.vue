@@ -4,7 +4,7 @@
     <div slot="body">
       <div class="message">
         <i class="icon mdi mdi-alert" />
-        Interruption: PID Process {{process.pid}}
+        Interruption: PID Process {{ process.pid }}
       </div>
     </div>
   </Modal>

@@ -38,17 +38,23 @@ export default {
     addTask() {
       let processes = []
       let task = {}
-      for (let index = 0; index < Math.floor(Math.random() * 5 + 1); index++) {
+      for (
+        let index = 0;
+        index < /*Math.floor(Math.random() * 5 + 1)*/ 1;
+        index++
+      ) {
         let process = {}
         process.pid = Math.floor(Math.random() * 10000 + 1)
         process.name = `${this.name.toUpperCase().replace(/\s/g, '')}.EXE`
-        process.status = 'Ready'
+        process.status = 'Creating'
+        process.time = 0
         processes.push(process)
       }
       task.id = Math.floor(Math.random() * 10000 + 1)
       task.name = this.name
       task.processes = processes
-      task.status = 'Ready'
+      task.status = 'Creating'
+      task.time = 0
       this.$emit('addTask', task)
       this.$refs.modal.close()
     }
